@@ -1,0 +1,5 @@
+def return_last_element(tuple_item):
+    return tuple_item[-1]
+Sample_List = [(2, 5), (1, 2), (4, 4), (2, 3), (2, 1)]
+expected_list=sorted(Sample_List,key=return_last_element)    # [(2, 1), (1, 2), (2, 3), (4, 4), (2, 5)]
+print(expected_list)
