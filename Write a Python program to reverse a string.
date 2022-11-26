@@ -1,0 +1,3 @@
+user_str=input("Enter String:")
+result=user_str[::-1]
+print(result)
