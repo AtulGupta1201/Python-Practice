@@ -1,0 +1,6 @@
+def sum(numbers):
+    temp = 0
+    for i in numbers:
+        temp += i
+    return temp
+print(sum((8, 2, 3, 0, 7)))
