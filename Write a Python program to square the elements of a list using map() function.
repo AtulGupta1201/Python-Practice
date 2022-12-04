@@ -1,0 +1,3 @@
+lst1=[4, 5, 2, 9]        #sample list
+data=list(map(lambda data:data**2,lst1))
+print('Square the elements of the list:',data)              #Square the elements of the list
