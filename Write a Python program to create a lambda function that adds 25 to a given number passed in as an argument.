@@ -1,0 +1,4 @@
+#Sample input : 10
+#Sample output : 35
+result = lambda data : data + 25
+print("After adding 25 to given number passed:",result(10))        #35
