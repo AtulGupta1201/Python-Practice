@@ -1,0 +1,3 @@
+data=10
+result = lambda data : data + 25
+print("After adding 25 to given data:",result(data))        #35
