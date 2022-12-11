@@ -1,0 +1,43 @@
+class student:
+
+
+    def __init__(self, name,roll_no):
+         self. __name = name
+         self. __roll_no =roll_no
+      
+    # getter method
+    def get_name(self):
+        return self.__name
+      
+    # setter method
+    def set_name(self, name_input):
+        self.__name = name_input
+
+
+
+          # getter method
+    def get_roll_no(self):
+        return self.__roll_no
+      
+    # setter method
+    def set_roll_no(self, roll_no_input):
+        self.__roll_no = roll_no_input
+
+   ## creating an object
+obj = student("Atul",12)
+
+## getting the value of 'name and rollno' using get_name and get_rollno() method
+print(obj.get_name())
+print(obj.get_roll_no())
+
+obj.set_name("Raj")
+print(obj.get_name())
+
+
+obj.set_roll_no(3)
+print(obj.get_roll_no())
+    
+
+
+
+  
