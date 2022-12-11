@@ -28,7 +28,7 @@ obj=Account("Ashish",2000)
 obj.display()
 
 # creation of an object variable or an instance
-obj1 = SavingsAccount('Ashish', 886012, 5)
+obj1 = SavingsAccount('Ashish', 5000, 5)
  
 # calling a function of the class Person using its instance
 obj1.display()
