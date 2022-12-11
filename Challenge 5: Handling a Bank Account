@@ -1,0 +1,51 @@
+class Account(object):
+    title=None
+    balance=0
+    # __init__ is known as the constructor
+    def __init__(self, title, balance):
+        self.title = title
+        self.balance = balance
+ 
+    def get_balance(self):
+        print("Current Balance: ",self.balance)
+        
+    def deposit(self,amt):
+        self.balance += amt
+        print(amt," deposit Successful")
+        
+    def withdrawal(self, amt):
+        if(amt > self.balance):
+            print("Insufficient Balance")
+            return
+        
+        self.balance -= amt
+        print(amt," withdraw Successful")
+    
+ 
+# child class
+ 
+ 
+class SavingsAccount(Account):
+    interestrate=0
+    def __init__(self, title, balance, interestrate):
+        self.interestrate = interestrate
+   
+ 
+        # invoking the __init__ of the parent class
+        Account.__init__(self, title, balance)
+    def interest(self):
+            print("Interest is", self.interestrate)
+ 
+obj=Account("Atul",2000)
+obj.get_balance()
+obj.deposit(2000)
+obj.get_balance()
+
+# creation of an object variable or an instance
+obj1 = SavingsAccount('Raj', 100000, 5)
+ 
+# calling a function of the class Person using its instance
+obj1.get_balance()
+obj1.interest()
+obj1.withdrawal(100)
+obj1.get_balance()
