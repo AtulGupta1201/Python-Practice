@@ -11,16 +11,12 @@ class Account(object):
         
     def deposit(self,amt):
         self.balance += amt
-        print(amt," deposit Successful")
+        # print(amt)
         
     def withdrawal(self, amt):
-        if(amt > self.balance):
-            print("Insufficient Balance")
-        else:
-            self.balance -= amt
-            print(amt," withdraw Successful")
+       self.amt = amt
+       self.balance = self.balance - self.amt
     
- 
 # child class
  
  
@@ -37,10 +33,16 @@ class SavingsAccount(Account):
         print("Interest is", interest_amount)
  
 obj=Account("Ashish",2000)
-print(obj.getbalance())
+# print(obj.getbalance())
 
 obj.deposit(500)
 print(obj.getbalance())
+
+obj1=Account("Ashish",2000)
+# print(obj1.getbalance())
+
+obj1.withdrawal(500)
+print(obj1.getbalance())
 
 # creation of an object variable or an instance
 obj1 = SavingsAccount('Ashish', 2000, 5)
