@@ -1,0 +1,174 @@
+
+
+
+class restaurant:
+    def __init__(self):
+        food={1: {'food_name': 'Tandoori Chicken', 'quantity': 'gm', 'price': 240.0, 'discount': 80.0, 'stock': 2000}, 
+                   2: {'food_name': 'Vegan Burger', 'quantity': 'pieces', 'price': 320.0, 'discount': 70.0, 'stock': 10},
+                   3: {'food_name': 'Truffle Cake', 'quantity': 'gm', 'price': 900.0, 'discount': 40.0, 'stock': 1000}}
+        
+        food_id=len(food)+1
+        personal_detail={1: {'name': 'atul', 'mobile_no': 1, 'email': 'atul', 'address': 'hgjhgs', 'password': '123'}}
+        self.customer_id=len(personal_detail)+1
+        
+        details=input("Welcome to the restaurant!! Are you an admin or customer: ")
+        if details.upper() in ('ADMIN'):
+            self.action(food,food_id)
+            
+        elif details.upper() in ('CUSTOMER'):
+            self.ordered_item=[]
+            self.customer_function(food,food_id,personal_detail)
+            
+
+        
+        
+        
+        
+        
+#admin
+    def action(self,food,food_id):
+        act=input("Hi Admin!! What action do you want to perform, add, delete or edit item? ")
+        if act.upper()=="ADD":
+            self.add_new_item(food,food_id)
+        elif act.upper()=="DELETE":
+            self.remove_foodItem(food,food_id)
+        elif act.upper() == "EDIT":
+            self.edit_foodItem(food,food_id)
+        else:
+            print("Please choose from the below option: ")
+            print("ADD\nDELETE\nEDIT")
+            self.action()
+    def add_new_item(self,food,food_id):
+        food_name=input("Enter the food name: ")
+        quantity=int(input("Enter food quantity: "))
+        price=int(input("Enter food price in INR: "))
+        discount= int(input("Enter food discount in INR "))
+        stock= int(input("Enter the amount left in stock in the restaurant: "))
+        item={"name":food_name,"quantity":quantity,"price":price,"discount":discount,"stock":stock}
+        
+        food_id=len(food)+1
+        food[food_id]=item
+        print(food)
+        print("Item added successfully")
+        
+
+    def remove_foodItem(self,food,food_id):
+        del food[int(input("Enter the food_id which you want to delete: "))]
+        print("Remaining items are",food)
+    def edit_foodItem(self,food,food_id):
+        val=input("Do you want to edit data: ")
+        if val in ("Yes","yes","Y","y", "YES"):
+            f_id=int(input("Enter the food_id which you want to edit: "))
+            if f_id in food:
+                data=input(f"Enter the data you want to edit: " )
+                if(data in food[f_id]):
+                    food[f_id][data]=input(f"Enter the {data} you want to change with: " )
+                else:
+                    print("Data enterred was incorrect")
+            else:
+                print("There is no item with id ",f_id)
+        else:
+            print("No data was updated")        
+        print(food)
+            
+       #customer function
+    def my_order(self,food):
+        my_list = []
+        Total=0
+        order=dict()
+        print("Available food items are: ", food)
+        my_list= list(map(int,input("\nEnter the food items in a list to order : ").strip().split(",")))
+        
+        for i in my_list:
+            if i in food:
+                print(food[i])
+                Total+=food[i]['price']
+                self.ordered_item.append(food[i])
+            else:
+                print("Please select from the available food items")
+        if i in food:
+            print("Total price of the cart is: ", Total)
+            order_status=input(f"Do you want to place an order of {Total} ?: ")
+            if order_status in ("Yes", "yes","Y","y", "YES"):
+                for i in my_list:
+                    if i in food:
+                        order.update(food[i])
+                
+                
+                print(self.ordered_item)
+                print("Thankyou for placing an order")
+                print ("Thank you visit again")
+                order_input=input("Do you want to view your order history: ")
+                if order_input in ("Yes","yes","Y","y", "YES"):
+                    self.order_history(self.ordered_item)
+                
+            else:
+                print ("Thank you visit again")
+    def update_profile(self, personal_detail):
+        print(personal_detail)
+        val=input("Do you want to edit your profile: ")
+        if val in ("Yes","yes","Y","y", "YES"):
+            data=input(f"Enter the data you want to edit: " )
+            for i in personal_detail:
+                if(data in personal_detail[i]):
+                    personal_detail[i][data]=input(f"Enter the {data} you want to change with: " )
+                    print(personal_detail)
+                else:
+                    print("Data enterred was incorrect")
+        else:
+            print("There is no such data")
+    
+
+    def customer_function(self,food,food_id,personal_detail):
+        user_in=input("Are you an existing user? ")
+        if user_in in  ("Yes", "yes","Y","y", "YES"):
+            email=input("Enter your emailId: ")
+            length=len(personal_detail)
+            
+            for i in range(0,length):
+                
+                if(email in personal_detail[i+1]['email']):
+                    password=input("Enter the password")
+                    if(password == personal_detail[i+1]['password']):
+                        print("Welcome ",personal_detail[i+1]['name'])
+                        choice=input("Please choose from below:\nUPDATE PROFILE \nORDER FOOD ")
+                        if choice.lower()=="order":
+                            self.my_order(food)
+                        if choice.lower()=="update":
+                            self.update_profile(personal_detail)
+                    else:
+                        print("Password is incorrect")
+                else:
+                    print("There is no such user. Please register!!")
+                    self.register_user(personal_detail,food,food_id)
+        elif user_in in  ("No", "no","N","n"):
+            self.register_user(personal_detail,food,food_id)
+
+    def register_user(self,personal_detail,food,food_id):
+        name=input("Enter your full name: ")
+        mobile_no = int(input("Enter your phone no : "))
+        email    =  input("Enter your email : ")
+        address = input("Enter your address : ")
+        password = input("Enter the password : ")
+        items1 = {"full_name" : name , "mobile_no" : mobile_no , "email" : email , "address" : address , "password" : password}
+        customer_id=len(personal_detail) + 1
+        personal_detail[customer_id]=items1
+        print()
+        print("The personal details is filled by the customer ",personal_detail)
+        print("User details are completed *** thank you!")
+        print("go ahead for order")
+
+        self.my_order(food)
+    def order_history(self,order_history):
+        print(order_history)
+    
+    
+
+    
+x=restaurant()
+
+        
+        
+
+            
+        
