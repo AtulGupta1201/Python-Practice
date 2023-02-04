@@ -1,0 +1,12 @@
+create table sys.countries
+(
+country_id int,
+country_name varchar(50),
+region_id varchar(50),
+CHECK (country_name ='Italy' OR country_name ='India' OR country_name ='China')
+);
+
+create table country_new as select * from countries
+
+Insert into sys.countries values (1,'ii', 123);
+select * from sys.countries
