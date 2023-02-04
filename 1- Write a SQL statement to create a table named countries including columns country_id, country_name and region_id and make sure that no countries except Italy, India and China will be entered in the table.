@@ -1,0 +1,8 @@
+
+create table sys.countries
+(
+country_id int,
+country_name varchar(50),
+region_id varchar(50),
+CHECK (country_name ='Italy' OR country_name ='India' OR country_name ='China')
+);
